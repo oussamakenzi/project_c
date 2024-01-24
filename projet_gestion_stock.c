@@ -50,6 +50,7 @@ int main() {
     int quantite;
     int prod;
     int quant;
+    int choix;
 
     Produit = (int**)malloc(2 * sizeof(int*));
     Produit[0] = (int*)malloc(taille * sizeof(int));
@@ -64,23 +65,49 @@ int main() {
     Produit[1][2] = 324;
     Produit[1][3] = 1234;
 
-    printf("Entrez le code du produit a inserer :\n");
-    scanf("%d", &code);
-    printf("Entrez la quantite du produit a inserer :\n");
+printf("choix : \n");
+printf("---------\n");
+printf("####### 1 inserer un produit ##########\n");
+printf("------------------------------------------\n");
+printf("####### 2  reterer un produit ##########\n");
+printf("------------------------------------------\n");
+printf("####### 3 afficher les  produit ##########\n");
+printf("------------------------------------------\n");
+printf("####### 4 exit ###########################\n");
+printf("------------------------------------------\n");
+do{
+printf("prenez un choix dans la menu  : ");
+scanf("%d",&choix);
+
+if(choix>0 && choix<=4){
+
+	switch(choix){
+		case 1 :
+		 printf("Entrez le code du produit a inserer :\n");
+        scanf("%d", &code);
+        printf("Entrez la quantite du produit a inserer :\n");
     scanf("%d", &quantite);
-    printf("Entrez le code du produit a retirer :\n");
-    scanf("%d", &prod);
-    printf("Entrez la quantite du produit a retirer :\n");
-    scanf("%d", &quant);
-
     Produit = inserProduit(Produit, &taille, code, quantite);
-    Produit = retireProduit(Produit, &taille, prod, quant);
-
-    for (i = 0; i < 2; i++) {
-        for (j = 0; j < taille; j++)
-            printf("%d \t", Produit[i][j]);
-        printf("\n");
+    break;
+    case 2 :
+    	printf("Entrez le code du produit a retirer :\n");
+        scanf("%d", &prod);
+        printf("Entrez la quantite du produit a retirer :\n");
+        scanf("%d", &quant);
+        Produit = retireProduit(Produit, &taille, prod, quant);
+        break;
+        case 3:
+        	    for (i = 0; i < 2; i++) {
+                     for (j = 0; j < taille; j++)
+                       printf("%d \t", Produit[i][j]);
+                printf("\n");
+        	    }
+                break;
+        case 4:
+        	exit(0);
     }
+	}
+}while(choix !=4);
 
     free(Produit[0]);
     free(Produit[1]);
@@ -88,3 +115,4 @@ int main() {
 
     return 0;
 }
+
